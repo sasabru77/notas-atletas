@@ -23,18 +23,33 @@ for (let i = 0; i < atletas.length; i++){
   console.log("Atleta: " + atleta.nome)
   console.log("Notas Obtidas: " + atleta.notas)
 
-  // Atleta: Cesar Abascal
-  //Notas Obtidas: 10,10,7.88,8.42,9.34
-  //Média Válida: 8.766666666666666
-  var notas = atleta.notas;
-  var soma = 0;
+  let notas = atleta.notas;
   
-  for(var y = 0; y < notas.length; y++) {
-    soma += notas[y]; 
-  }
-  let media = soma / notas.length   
+  // ordenar as notas da maior para a menor
+  notas.sort(comparaNumeros)
 
+  // remover primeiro elemento do array (menor nota)
+  notas.shift();
+
+  // remover último elemento do array (maior nota)
+  notas.pop();
+
+  let soma = 0;
+  for(let y = 0; y < notas.length; y++) {
+    soma = soma + notas[y]; 
+  }
+
+  let media = soma / notas.length  
+  
+  // fixa as casas decimais
+  media = media.toFixed(2)
   
   console.log("Média Válida " + media);
   console.log("")
+}
+
+
+
+function comparaNumeros(numeroA, numeroB){
+  return numeroA - numeroB;
 }
